@@ -9,15 +9,23 @@ class App extends React.Component{
           title: 'Hello React 2',
           isShowing: false
         }
+        this.handleClick = this.handleClick.bind(this);
   }
   // states are immutable
+ handleClick() {
+   this.setState((prevState) => {
+     return {
+       isShowing: !prevState.isShowing
+     }
+   })
+ }
 
   render() {
     return (
       <div style={{textAlign: 'center'}}>
          <div style={{marginTop: '1rem'}}>{this.state.title}</div>
          <div>
-           <button onClick={() => this.setState({isShowing: !this.state.isShowing})} className="button" style={{padding: '10px', backgroundColor: 'lightblue', color: 'white'}}>Toggle Image</button>
+           <button onClick={this.handleClick} className="button" style={{padding: '10px', backgroundColor: 'lightblue', color: 'white'}}>Toggle Image</button>
            {this.state.isShowing ? (
            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmljeWNsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1296&q=60" />
            ) : null}
