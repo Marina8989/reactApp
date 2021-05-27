@@ -19,9 +19,6 @@ class App extends React.Component{
      this.setState({title: 'Hello Lifecycle State'});
    }
 
-   componentWillUnmount() {
-     console.log('App Unmounted');
-   }
 
 
 
