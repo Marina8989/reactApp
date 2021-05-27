@@ -1,9 +1,11 @@
 import React from 'react';
 import './index.css';
+import Images from './components/Images';
 
 
 class App extends React.Component{
   constructor(props) {
+    console.log('App Contructor');
         super(props);
         this.state = {
           title: 'Hello React 2',
@@ -11,6 +13,18 @@ class App extends React.Component{
         }
         this.handleClick = this.handleClick.bind(this);
   }
+
+   componentDidMount() {
+     console.log('App Mounted');
+     this.setState({title: 'Hello Lifecycle State'});
+   }
+
+   componentWillUnmount() {
+     console.log('App Unmounted');
+   }
+
+
+
   // states are immutable
  handleClick() {
    this.setState((prevState) => {
@@ -21,14 +35,13 @@ class App extends React.Component{
  }
 
   render() {
+    console.log('App Render');
     return (
       <div style={{textAlign: 'center'}}>
          <div style={{marginTop: '1rem'}}>{this.state.title}</div>
          <div>
            <button onClick={this.handleClick} className="button" style={{padding: '10px', backgroundColor: 'lightblue', color: 'white'}}>Toggle Image</button>
-           {this.state.isShowing ? (
-           <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmljeWNsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1296&q=60" />
-           ) : null}
+            {this.state.isShowing ? <Images /> : null}
          </div>
       </div>
     )
