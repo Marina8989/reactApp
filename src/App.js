@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './index.css';
 import Images from './components/Images';
 
 
 function App() {
    
-  const [title, setTitle] = React.useState('Hello React');
-  const [isShowing, setIsShowing] = React.useState(false);
+  const [title, setTitle] = useState('Hello React');
+  const [isShowing, setIsShowing] = useState(null);
+
+  // component Did Mount ONLY
+  useEffect(() => {
+    console.log('App Mounted');
+  }, []);
+
+
+  useEffect(() => {
+    if(isShowing !== null) {
+      console.log('App Updated');
+    }
+  }, [isShowing]);
+
 
   function handleClick() {
   setIsShowing(!isShowing);
@@ -15,6 +28,7 @@ function App() {
 
   return (
     <div style={{textAlign: 'center'}}>
+    {console.log('rerendered')}
          <div style={{marginTop: '1rem'}}>{title}</div>
          <div>
            <button onClick={handleClick} className="button" style={{padding: '10px', backgroundColor: 'lightblue', color: 'white'}}>Toggle Image</button>
